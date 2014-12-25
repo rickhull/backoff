@@ -52,8 +52,12 @@ defmodule FibTimer do
     {n,_} = args |> hd |> Integer.parse
     IO.puts "fib(#{n}) #{Backoff.fib(n)}"
 
-    secs = elapsed_secs(start, :erlang.now)
-    IO.puts "self\t#{div(secs, 60)}m#{rem(secs, 60)}s"
+    secs = start |> elapsed_secs(:erlang.now)
+    mins = secs |> trunc |> div(60)
+    fracs = secs - trunc(secs)
+    secs = ((secs |> trunc |> rem(60)) + fracs)
+    |> Float.to_string([decimals: 3])
+    IO.write "self\t#{mins}m#{secs}s"
   end
 
   def elapsed_secs({g1, s1, c1}, {g2, s2, c2}) do
