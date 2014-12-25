@@ -15,10 +15,15 @@ else
   seq=$2
 fi
 
-echo -n "Load Avg: "; cat /proc/loadavg; date +"%T.%6N"; echo ---
+status() {
+  echo -n "Load Avg: "; cat /proc/loadavg
+  date +"%T.%6N"
+}
+
+status
 for i in `seq $seq`; do
   echo; echo "===    time $1 $i    ==="
   time $1 $i
 done
-echo ---
-echo -n "Load Avg: "; cat /proc/loadavg; date +"%T.%6N"; echo ---
+echo
+status
