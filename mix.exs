@@ -4,7 +4,9 @@ defmodule Backoff.Mixfile do
   def project do
     [app: :backoff,
      version: "0.0.1",
-     elixir: "~> 1.1-dev",
+     elixir: "~> 1.0",
+     escript: [main_module: Backoff],
+     consolidate_protocols: true,
      deps: deps]
   end
 
