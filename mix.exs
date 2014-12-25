@@ -2,10 +2,10 @@ defmodule Backoff.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :backoff,
+    [app: :fib,
      version: "0.0.1",
      elixir: "~> 1.0",
-     escript: [main_module: Backoff],
+     escript: [main_module: FibTimer],
      consolidate_protocols: true,
      deps: deps]
   end
