@@ -11,8 +11,16 @@ def fib(n)
   end
 end
 
+def fast_fib(n, a = 0, b = 1)
+  if n == 0
+    a
+  else
+    fast_fib(n - 1, b, a + b)
+  end
+end
+
 n = ARGV.first or raise("provide n")
-puts "fib(#{n}) #{fib(n.to_i)}"
+puts "fib(#{n}) #{fast_fib(n.to_i)}"
 secs = Time.now - start
 
 mins = secs.to_i / 60

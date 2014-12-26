@@ -15,8 +15,9 @@ defmodule Backoff do
   def poly(n, exp \\ 2), do: :math.pow(n, exp)   # n^2
   def lin(n), do: n
 
-  def fib(n) when is_integer(n) and n >= 2, do: fib(n-2) + fib(n-1)
-  def fib(n) when is_integer(n) and n >= 0, do: n
+  def fib(n) when is_integer(n) and n >= 0, do: fib(n, 0, 1)
+  def fib(0, a, _), do: a
+  def fib(n, a, b), do: fib(n - 1, b, a + b)
 end
 
 defmodule Example do
@@ -46,6 +47,10 @@ end
 
 # used for a dumb benchmark thing
 defmodule FibTimer do
+  # sloooooooooow
+  def fib(n) when is_integer(n) and n >= 2, do: fib(n-2) + fib(n-1)
+  def fib(n) when is_integer(n) and n >= 0, do: n
+
   def main(args) do
     start = :erlang.now
     {n,_} = args |> hd |> Integer.parse
