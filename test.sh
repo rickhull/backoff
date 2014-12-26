@@ -10,7 +10,7 @@ if [ ! -x $1 ]; then
 fi
 
 if [ "$2" == "" ]; then
-  seq="20 3 35"
+  seq="5000 10000 95000"
 else
   seq=$2
 fi
