@@ -37,7 +37,6 @@ defmodule Example do
                     case Example.foo(5, 2) do
                       {:ok, _val} -> true
                       {:error, _msg} -> false
-                      _ -> raise("broken")
                     end
                   end,
                   &Backoff.exp/1)
